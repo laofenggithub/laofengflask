@@ -31,3 +31,4 @@ $sudo apt-get install virtualenv
 $mkdir myproject
 $virtualenv venv
 $. venv/bin/activate
+ 
