@@ -67,8 +67,10 @@ def upload():
     if request.method=='POST':
         f = request.files['file']
         basepath = path.abspath(path.dirname(__file__))
-        upload_path=path.join(basepath,'static/uploads')
-        f.save(upload_path,secure_filename(f.filename))
+        # upload_path=path.join(basepath,'static/uploads')
+        # f.save(upload_path,secure_filename(f.filename))
+        upload_path=path.join(basepath,'static/uploads',secure_filename(f.filename))
+        f.save(upload_path)
         return redirect(url_for('upload'))
     return render_template('upload.html')
 '''
@@ -80,6 +82,14 @@ def index():
     response = make_response(render_template('index.html',title='Welcome'))
     response.set_cookie('username','')
     return response
+
+@app1.route('/services')
+def services():
+    return 'Service'
+
+@app1.route('/about')
+def about():
+    return 'About'
 
 @app1.errorhandler(404)
 def page_not_found(error):
