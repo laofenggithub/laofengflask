@@ -1,3 +1,4 @@
+20171220
 study flask
 *mac python path /System/Library/Frameworks/Python.framework/Versions
 
@@ -31,4 +32,8 @@ $sudo apt-get install virtualenv
 $mkdir myproject
 $virtualenv venv
 $. venv/bin/activate
- 
+20171221
+*pip all package to txt,install all package in txt
+$pip freeze > requirement1221.txt
+$pip install -r requirement1221.txt
+

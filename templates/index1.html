@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Flask</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='site.css') }}">
+</head>
+<body>
+<!--title里的标记<h1>被识别出来，title|safe jinja2的过滤器写法-->
+{% autoescape false %}
+{{ title }}
+{% endautoescape %}
+{{ body|md|safe }}
+<!--读取文件xx.mx展示-->
+{{ read_md('http_methods.md')|md|safe }}
+</body>
+</html>
