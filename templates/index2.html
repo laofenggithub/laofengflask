@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Jinja2</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='site.css') }}">
+</head>
+<body>
+{# <!--title里的标记<h1>被识别出来，title|safe jinja2的过滤器写法-->  #}
+{# {% autoescape false %} #}
+{# {{ title }} #}
+{# {% endautoescape %} #}
+{# {{ body|md|safe }} #}
+{# <!--读取文件xx.mx展示--> #}
+{# {{ read_md('http_methods.md')|md|safe }} #}
+{% set links=[
+    ('Home', url_for('.index1')),
+    ('About', url_for('.about')),
+    ('Services', url_for('.services'))
+] %}
+{#Jinja2基本语法，本次实验是当请求的是当前页面时，url后加入“#请求的是当前页面index2.html” #}
+<nav>
+    {% for label,href in links %}
+        {% if not loop.first %} | {% endif %}
+        {% if href is current_link %}
+            <a href="#请求的是当前页面index2.html">{{ label }}</a>
+        {% else %}
+            <a href="{{ href }}#not current_link!">{{ label }}</a>
+        {% endif %}
+    {% endfor %}
+</nav>
+</body>
+</html>

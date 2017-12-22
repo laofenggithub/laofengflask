@@ -36,4 +36,5 @@ $. venv/bin/activate
 *pip all package to txt,install all package in txt
 $pip freeze > requirement1221.txt
 $pip install -r requirement1221.txt
-
+*reload to mypage for [live_server = Server(app.wsgi_app)]
+$python xxx.py

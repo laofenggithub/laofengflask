@@ -1,11 +1,12 @@
 # coding=utf-8
-from flask import Flask, render_template
+from flask import Flask, render_template, request, make_response
 from livereload import Server
 
 app = Flask(__name__)
 
 
 # flask模板
+'''
 @app.route('/')
 def index():
     return render_template('index1.html',  # html里就算{{variable}}在<!--注释-->里也会去识别读取
@@ -25,10 +26,26 @@ def read_md(filename):
     with open(filename) as md_file:
         content = reduce(lambda x, y: x + y, md_file.readlines())
     return content.decode('utf-8')
-
 @app.context_processor
 def inject_methods():
     return dict(read_md=read_md)
+'''
+# 模板里的函数
+@app.template_test('current_link')
+def is_current_link(link):
+    return link == request.path
+
+@app.route('/')
+def index1():
+    return render_template('index2.html',title='Welcome')
+
+@app.route('/services')
+def services():
+    return 'Service'
+
+@app.route('/about')
+def about():
+    return 'About'
 
 if __name__ == '__main__':
     live_server = Server(app.wsgi_app)
