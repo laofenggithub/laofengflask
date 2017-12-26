@@ -37,7 +37,7 @@ def is_current_link(link):
 
 @app.route('/')
 def index1():
-    return render_template('index2.html',title='Welcome')
+    return render_template('index3.html',title='Welcome')
 
 @app.route('/services')
 def services():

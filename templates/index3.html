@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% import '_marcos.html' as ui %}
+{% block title %}{{ title }}{% endblock title %}
+{% block content %}
+{% set links=[
+    ('Home', url_for('.index1')),
+    ('About', url_for('.about')),
+    ('Services', url_for('.services'))
+] %}
+<nav>
+    {% for label,href in links %}
+        {% if not loop.first %} | {% endif %}
+        {% if href is current_link %}
+            <a href="#请求的是当前页面index2.html">{{ label }}</a>
+        {% else %}
+            <a href="{{ href }}#not current_link!">{{ label }}</a>
+        {% endif %}
+    {% endfor %}
+</nav>
+    <h1>{{ self.title() }}</h1>
+
+    {{ ui.input('username') }}
+    {{ ui.input('password',type='password') }}
+{% endblock content %}
+<!--修改模版footer-->
+{% block footer %}
+    <hr>
+    {{ super() }}
+{% endblock footer %}
