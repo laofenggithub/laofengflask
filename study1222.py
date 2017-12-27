@@ -1,5 +1,5 @@
 # coding=utf-8
-from flask import Flask, render_template, request, make_response
+from flask import Flask, render_template, request, flash, make_response
 from livereload import Server
 
 from os import path
@@ -10,7 +10,7 @@ from flask_nav.elements import *
 app = Flask(__name__)
 Bootstrap(app)
 nav = Nav()
-
+app.config.from_pyfile('config')
 nav.register_element('top',Navbar(u'Flask入门',
                                   View(u'主页','index'),
                                   View(u'关于','about'),
@@ -20,6 +20,12 @@ nav.register_element('top',Navbar(u'Flask入门',
 nav.init_app(app)
 
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    from forms import LoginForm
+    form = LoginForm()
+    flash(u'登录成功')
+    return render_template('login1222.html', title=u'登录', form=form)
 
 @app.route('/')
 def index():
