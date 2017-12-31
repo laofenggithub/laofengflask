@@ -8,6 +8,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_nav.elements import *
 from .views import init_views
 
+# 引用当前工程下 __init__.py 文件里的内容
 # 正则表达式路由
 class RegexConverter(BaseConverter):
     def __init__(self, url_map, *items):
