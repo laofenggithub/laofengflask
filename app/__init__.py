@@ -1,12 +1,16 @@
 # coding=utf-8
-from flask import Flask
-from werkzeug.routing import BaseConverter
 from os import path
+
+from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_nav import Nav
-from flask_sqlalchemy import SQLAlchemy
 from flask_nav.elements import *
-from .views import init_views
+from flask_sqlalchemy import SQLAlchemy
+from werkzeug.routing import BaseConverter
+
+
+# from app.main.views import init_views
+
 
 # 引用当前工程下 __init__.py 文件里的内容
 # 正则表达式路由
@@ -30,6 +34,7 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = \
         'sqlite:///' + path.join(basedir, 'data.sqlite')
     app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     nav.register_element('top', Navbar(u'Flask入门',
                                        View(u'主页', 'index'),
                                        View(u'关于', 'about'),
@@ -38,6 +43,10 @@ def create_app():
     db.init_app(app)
     bootstrap.init_app(app)
     nav.init_app(app)
-    init_views(app)
+    # init_views(app)
     # 类似于插件的模式，将应用插入到各个功能里
+    from auth import auth as auth_blueprint
+    from main import main as main_blueprint
+    app.register_blueprint(auth_blueprint, url_prefix='/auth')
+    app.register_blueprint(main_blueprint, static_folder='static')
     return app
