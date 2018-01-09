@@ -7,7 +7,7 @@ from flask_nav import Nav
 from flask_nav.elements import *
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.routing import BaseConverter
-
+from flask_login import LoginManager
 
 # from app.main.views import init_views
 
@@ -25,7 +25,9 @@ basedir = path.abspath(path.dirname(__file__))
 bootstrap = Bootstrap()
 nav = Nav()
 db = SQLAlchemy()
-
+login_manager = LoginManager()
+login_manager.session_protection = 'strong'
+login_manager.login_view = 'auth.login'
 
 def create_app():
     app = Flask(__name__)
@@ -43,6 +45,7 @@ def create_app():
     db.init_app(app)
     bootstrap.init_app(app)
     nav.init_app(app)
+    login_manager.init_app(app)
     # init_views(app)
     # 类似于插件的模式，将应用插入到各个功能里
     from auth import auth as auth_blueprint
