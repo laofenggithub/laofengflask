@@ -25,7 +25,6 @@ class User(UserMixin, db.Model):
     def on_created(target, value, initiator):
         target.roles = Role.query.filter_by(name='Guests').first()
 
-
 # db.event.listen(User.name,'append',User.on_created)
 db.event.listen(User.name, 'set', User.on_created)
 
