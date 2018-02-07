@@ -38,3 +38,15 @@ $pip freeze > requirement1221.txt
 $pip install -r requirement1221.txt
 *reload to mypage for [live_server = Server(app.wsgi_app)]
 $python xxx.py
+
+20180207 logarithms
+问题1:注册功能报错。
+前台显示：Internal Server Error
+The server encountered an internal error and was unable to complete your request.
+Either the server is overloaded or there is an error in the application.
+后台显示：
+ File "/Users/fengshuai/myflaskenv/lib/python2.7/site-packages/sqlalchemy/orm/events.py", line 1889, in wrap
+    fn(target, value, *arg)
+TypeError: on_created() takes exactly 3 arguments (4 given)
+[E 180207 22:40:14 wsgi:355] 500 POST /auth/register (127.0.0.1) 28.45ms
+－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
