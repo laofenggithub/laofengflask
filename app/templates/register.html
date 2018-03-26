@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% import 'bootstrap/wtf.html' as wtf %}
-{% block page_body %}
+{% block content %}
     <div class="container">
         {% for message in get_flashed_messages() %}
             <div class="alert-info"> {{ message }}</div>

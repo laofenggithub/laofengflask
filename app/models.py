@@ -22,7 +22,7 @@ class User(UserMixin, db.Model):
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
 
     @staticmethod
-    def on_created(target, value, initiator):
+    def on_created(self, target, value, initiator):
         target.roles = Role.query.filter_by(name='Guests').first()
 
 

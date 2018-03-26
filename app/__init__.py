@@ -23,7 +23,7 @@ class RegexConverter(BaseConverter):
 basedir = path.abspath(path.dirname(__file__))
 
 bootstrap = Bootstrap()
-nav = Nav()
+# nav = Nav()
 db = SQLAlchemy()
 login_manager = LoginManager()
 login_manager.session_protection = 'strong'
@@ -37,14 +37,16 @@ def create_app():
         'sqlite:///' + path.join(basedir, 'data.sqlite')
     app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    nav.register_element('top', Navbar(u'Flask入门',
-                                       View(u'主页', 'index'),
-                                       View(u'关于', 'about'),
-                                       View(u'服务', 'services')
-                                       ))
+    # 已经在_navbar.html中注册
+    # nav.register_element('top', null)
+    # nav.register_element('top', Navbar(u'Flask入门',
+    #                                    View(u'主页', 'main.index'),
+    #                                    View(u'关于', 'main.about'),
+    #                                    View(u'服务', 'main.services')
+    #                                    ))
     db.init_app(app)
     bootstrap.init_app(app)
-    nav.init_app(app)
+    # nav.init_app(app)
     login_manager.init_app(app)
     # init_views(app)
     # 类似于插件的模式，将应用插入到各个功能里
