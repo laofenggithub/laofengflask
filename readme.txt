@@ -38,3 +38,7 @@ $pip freeze > requirement1221.txt
 $pip install -r requirement1221.txt
 *reload to mypage for [live_server = Server(app.wsgi_app)]
 $python xxx.py
+
+20180329
+at Terminal tab
+>python manager.py dev
