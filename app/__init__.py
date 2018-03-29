@@ -52,5 +52,6 @@ def create_app():
     from main import main as main_blueprint
     app.register_blueprint(auth_blueprint, url_prefix='/auth')
     app.register_blueprint(main_blueprint, static_folder='static')
+
     return app
 
